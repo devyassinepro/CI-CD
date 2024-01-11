@@ -1,0 +1,37 @@
+version: '3.2'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./jenkins:/var/jenkins_home:rw
+      - /run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - ./war:/mnt/:rw
+    container_name: jenkins
+
+  app1:
+    image: laravel:latest   # Replace 'laravel:latest' with the actual image name for Laravel app 1
+    container_name: laravel_app1
+    ports:
+      - "8001:80"   # Adjust the port as needed for Laravel app 1
+    volumes:
+      - ./app1:/var/www/html   # Adjust the path to the Laravel app 1 codebase on your host machine
+
+  app2:
+    image: laravel:latest   # Replace 'laravel:latest' with the actual image name for Laravel app 2
+    container_name: laravel_app2
+    ports:
+      - "8002:80"   # Adjust the port as needed for Laravel app 2
+    volumes:
+      - ./app2:/var/www/html   # Adjust the path to the Laravel app 2 codebase on your host machine
+
+  app3:
+    image: laravel:latest   # Replace 'laravel:latest' with the actual image name for Laravel app 3
+    container_name: laravel_app3
+    ports:
+      - "8003:80"   # Adjust the port as needed for Laravel app 3
+    volumes:
+      - ./app3:/var/www/html   # Adjust the path to the Laravel app 3 codebase on your host machine
